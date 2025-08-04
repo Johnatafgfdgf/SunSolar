@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,114 +33,344 @@
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+            }
         }
     </style>
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
     <!-- Navigation -->
-    <!-- ... original content unchanged until Admin Panel Modal --><!-- Admin Panel Modal -->
-<div id="admin-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 invisible transition">
-    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
-        <div class="flex justify-between items-center bg-gray-800 text-white p-4">
-            <h3 class="text-xl font-bold">Painel do Funcionário</h3>
-            <button onclick="closeModal('admin-modal')" class="text-white hover:text-orange-500 focus:outline-none">
-                <i class="fas fa-times"></i>
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-solar-panel text-orange-500 text-2xl"></i>
+                <span class="text-xl font-bold">SunSolar</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-orange-500 transition">Home</a>
+                <a href="#about" class="hover:text-orange-500 transition">Sobre Nós</a>
+                <a href="#" onclick="openPurchaseModal()" class="hover:text-orange-500 transition">Comprar</a>
+                <a href="#" onclick="openLoginModal()" class="text-gray-400 hover:text-orange-500 transition">Área Restrita</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
-        <div class="p-6">
-            <div class="mb-6">
-                <label class="block text-gray-700 mb-2">Adicionar imagem do produto</label>
-                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                    <input type="file" id="product-image" class="hidden" accept="image/*">
-                    <label for="product-image" class="cursor-pointer">
-                        <i class="fas fa-cloud-upload-alt text-4xl text-orange-500 mb-2"></i>
-                        <p class="text-gray-600">Clique para selecionar ou arraste uma imagem</p>
-                    </label>
-                    <img id="image-preview" class="mx-auto mt-4 hidden max-h-40 rounded-lg" />
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden gradient-bg pb-4 px-4" id="mobile-menu">
+            <a href="#home" class="block py-2 hover:text-orange-500 transition">Home</a>
+            <a href="#about" class="block py-2 hover:text-orange-500 transition">Sobre Nós</a>
+            <a href="#" onclick="openPurchaseModal()" class="block py-2 hover:text-orange-500 transition">Comprar</a>
+            <a href="#" onclick="openLoginModal()" class="block py-2 text-gray-400 hover:text-orange-500 transition">Área Restrita</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">SunSolar</h1>
+                <p class="text-xl md:text-2xl mb-6 text-gray-300">Energia solar portátil onde você precisar</p>
+                <p class="mb-8 text-gray-300">A tomada portátil com painel solar retrátil que revoluciona o modo como você usa energia. Carregue seus dispositivos em qualquer lugar, de forma sustentável e eficiente.</p>
+                <button onclick="openPurchaseModal()" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105 pulse-animation">
+                    Comprar Agora
+                </button>
+            </div>
+            <div class="md:w-1/2 product-card">
+                <div class="product-card-inner">
+                    <img src="https://images.unsplash.com/photo-1508514177221-188e1eaf0883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="SunSolar - Tomada portátil com painel solar" 
+                         class="w-full max-w-md mx-auto rounded-lg shadow-2xl border-4 border-orange-500">
                 </div>
             </div>
-            <button class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition">
-                Salvar Alterações
-            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Por que escolher o SunSolar?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="text-orange-500 mb-4">
+                        <i class="fas fa-bolt text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Energia Limpa</h3>
+                    <p class="text-gray-600">Utilize energia solar renovável para carregar seus dispositivos, reduzindo sua pegada de carbono.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="text-orange-500 mb-4">
+                        <i class="fas fa-compress-arrows-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Design Retrátil</h3>
+                    <p class="text-gray-600">Painel solar que se expande quando necessário e retrai para um tamanho compacto quando não está em uso.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="text-orange-500 mb-4">
+                        <i class="fas fa-plug text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Portátil</h3>
+                    <p class="text-gray-600">Leve e fácil de transportar, perfeito para viagens, acampamentos ou emergências.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Sobre Nós</h2>
+            <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+                <p class="mb-6 text-gray-300">A SunSolar é uma startup brasileira focada em desenvolver produtos sustentáveis e inovadores na área de energia portátil.</p>
+                <p class="mb-6 text-gray-300">Nossa missão é tornar a energia solar acessível e prática para o dia a dia das pessoas, reduzindo a dependência de fontes não renováveis.</p>
+                <p class="text-gray-300">O SunSolar é nosso primeiro produto, desenvolvido após anos de pesquisa e testes para oferecer a melhor experiência em energia portátil.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon Section -->
+    <section class="py-12 bg-orange-500 text-white text-center">
+        <div class="container mx-auto px-4">
+            <p class="text-xl md:text-2xl font-medium">Em breve mais novidades incríveis...</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-solar-panel text-orange-500 text-2xl"></i>
+                        <span class="text-xl font-bold">SunSolar</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Energia solar portátil para um futuro sustentável.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition"><i class="fab fa-twitter text-xl"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 SunSolar. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Purchase Modal -->
+    <div id="purchase-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 invisible transition">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
+            <div class="flex justify-between items-center bg-gray-800 text-white p-4">
+                <h3 class="text-xl font-bold">Finalizar Compra</h3>
+                <button onclick="closeModal('purchase-modal')" class="text-white hover:text-orange-500 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="purchase-form">
+                    <div class="mb-4">
+                        <label for="fullname" class="block text-gray-700 mb-2">Nome Completo</label>
+                        <input type="text" id="fullname" class="w-full px-4 py-2 border rounded-lg input-effect focus:border-orange-500 focus:outline-none" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="cpf" class="block text-gray-700 mb-2">CPF</label>
+                        <input type="text" id="cpf" class="w-full px-4 py-2 border rounded-lg input-effect focus:border-orange-500 focus:outline-none" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="address" class="block text-gray-700 mb-2">Endereço Completo</label>
+                        <textarea id="address" rows="3" class="w-full px-4 py-2 border rounded-lg input-effect focus:border-orange-500 focus:outline-none" required></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-2">Forma de Pagamento</label>
+                        <div class="flex items-center mb-2">
+                            <input type="radio" id="pix" name="payment" value="pix" class="mr-2" checked>
+                            <label for="pix">Pix</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="credit" name="payment" value="credit" class="mr-2">
+                            <label for="credit">Cartão de Crédito</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition">
+                        Finalizar Pedido
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function () {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 invisible transition">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
+            <div class="flex justify-between items-center bg-gray-800 text-white p-4">
+                <h3 class="text-xl font-bold">Área Restrita</h3>
+                <button onclick="closeModal('login-modal')" class="text-white hover:text-orange-500 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="login-form">
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700 mb-2">Senha</label>
+                        <input type="password" id="password" class="w-full px-4 py-2 border rounded-lg input-effect focus:border-orange-500 focus:outline-none" required>
+                    </div>
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition">
+                        Acessar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    // Modal functions
-    function openPurchaseModal() {
-        document.getElementById('purchase-modal').classList.remove('invisible', 'opacity-0');
-        document.body.style.overflow = 'hidden';
-    }
+    <!-- Admin Panel Modal -->
+    <div id="admin-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 invisible transition">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
+            <div class="flex justify-between items-center bg-gray-800 text-white p-4">
+                <h3 class="text-xl font-bold">Painel do Funcionário</h3>
+                <button onclick="closeModal('admin-modal')" class="text-white hover:text-orange-500 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Adicionar imagem do produto</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <input type="file" id="product-image" class="hidden" accept="image/*">
+                        <label for="product-image" class="cursor-pointer">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-orange-500 mb-2"></i>
+                            <p class="text-gray-600">Clique para selecionar ou arraste uma imagem</p>
+                        </label>
+                    </div>
+                </div>
+                <button class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition">
+                    Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
 
-    function openLoginModal() {
-        document.getElementById('login-modal').classList.remove('invisible', 'opacity-0');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function openAdminModal() {
-        document.getElementById('admin-modal').classList.remove('invisible', 'opacity-0');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).classList.add('invisible', 'opacity-0');
-        document.body.style.overflow = 'auto';
-    }
-
-    document.getElementById('login-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const password = document.getElementById('password').value;
-        const correctPassword = '123456d';
-        if (password === correctPassword) {
-            closeModal('login-modal');
-            openAdminModal();
-        } else {
-            alert('Senha incorreta. Tente novamente.');
-        }
-    });
-
-    document.getElementById('purchase-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Pedido realizado com sucesso! Em breve entraremos em contato para confirmar os detalhes.');
-        closeModal('purchase-modal');
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+    <script>
+        // Carrega imagem salva ao abrir a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedImage = localStorage.getItem('productImage');
+            if (savedImage) {
+                const productImage = document.querySelector('.product-card-inner img');
+                productImage.src = savedImage;
             }
         });
-    });
 
-    // Preview uploaded image
-    document.getElementById('product-image').addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const previewImg = document.getElementById('image-preview');
-                previewImg.src = event.target.result;
-                previewImg.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Modal functions
+        function openPurchaseModal() {
+            document.getElementById('purchase-modal').classList.remove('invisible', 'opacity-0');
+            document.body.style.overflow = 'hidden';
         }
-    });
-</script>
 
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('invisible', 'opacity-0');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('invisible', 'opacity-0');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('invisible', 'opacity-0');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form submissions
+        // Upload e preview da imagem
+        document.getElementById('product-image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const previewImg = document.getElementById('preview-img');
+                    previewImg.src = event.target.result;
+                    document.getElementById('image-preview').classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Salvar imagem
+        document.querySelector('#admin-modal button').addEventListener('click', function() {
+            const fileInput = document.getElementById('product-image');
+            if (fileInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    localStorage.setItem('productImage', event.target.result);
+                    
+                    // Atualiza a imagem na página principal
+                    const productImage = document.querySelector('.product-card-inner img');
+                    productImage.src = event.target.result;
+                    
+                    alert('Imagem salva com sucesso!');
+                    closeModal('admin-modal');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('Por favor, selecione uma imagem antes de salvar.');
+            }
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const correctPassword = '123456d';
+            
+            if (password === correctPassword) {
+                closeModal('login-modal');
+                openAdminModal();
+            } else {
+                alert('Senha incorreta. Tente novamente.');
+            }
+        });
+
+        document.getElementById('purchase-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pedido realizado com sucesso! Em breve entraremos em contato para confirmar os detalhes.');
+            closeModal('purchase-modal');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
